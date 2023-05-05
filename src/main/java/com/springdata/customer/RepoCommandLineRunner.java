@@ -1,12 +1,15 @@
-package com.springdata.customer.jdbc;
+package com.springdata.customer;
 
+import com.springdata.customer.jdbc.CustomerJdbcRepo;
+import com.springdata.customer.jpa.Customer;
+import com.springdata.customer.jpa.CustomerJpaRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class JdbcCommandLineRunner implements CommandLineRunner {
-    // inject the repository
+public class RepoCommandLineRunner implements CommandLineRunner {
+/*    // inject the repository [JDBC]
     @Autowired
     private CustomerJdbcRepo _courseJdbcRepo;
 
@@ -18,5 +21,14 @@ public class JdbcCommandLineRunner implements CommandLineRunner {
         _courseJdbcRepo.DeleteCustomer(2L);
 
         System.out.println(_courseJdbcRepo.GetById(3L));
+    }*/
+
+    // inject the repo [JPA]
+    @Autowired
+    private CustomerJpaRepo _jpaRepo;
+    @Override
+    public void run(String... args) throws Exception {
+        _jpaRepo.Insert(new Customer(1L, "fadyGamil", "fady@gmail.com"));
     }
+
 }
